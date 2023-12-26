@@ -1,4 +1,4 @@
-import { StyledInput, StyledLabel } from 'components/ContactForm/ContactForm.styled'
+import { StyledInput, StyledLabel } from '../../components/ContactForm/ContactForm.styled'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 

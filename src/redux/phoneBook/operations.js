@@ -1,40 +1,59 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://6582d93502f747c8367a5cda.mockapi.io';
+import { api, setToken } from '../../configAxios/api';
 
 export const fetchContactsThunk = createAsyncThunk(
   'fetchAll',
-  async (_, thunkAPI) => {
+  async (_, thunkApi) => {
+    const savedToken = thunkApi.getState().auth.token;
+    if (savedToken) {
+      setToken(savedToken);
+    } else {
+      return thunkApi.rejectWithValue('Token is not exist');
+    }
+
     try {
-      const { data } = await axios.get('contacts');
+      const { data } = await api.get('/contacts');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
 export const deleteContactThunk = createAsyncThunk(
   'deleteContact',
-  async (id, thunkAPI) => {
+  async (id, thunkApi) => {
+    const savedToken = thunkApi.getState().auth.token;
+    if (savedToken) {
+      setToken(savedToken);
+    } else {
+      return thunkApi.rejectWithValue('Token is not exist');
+    }
+
     try {
-      await axios.delete(`contacts/${id}`);
+      await api.delete(`/contacts/${id}`);
       return id;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
 export const addContactThunk = createAsyncThunk(
   'addContact',
-  async (contact, thunkAPI) => {
+  async (contact, thunkApi) => {
+    const savedToken = thunkApi.getState().auth.token;
+    if (savedToken) {
+      setToken(savedToken);
+    } else {
+      return thunkApi.rejectWithValue('Token is not exist');
+    }
+
     try {
-      const { data } = await axios.post('contacts', contact);
+      const { data } = await api.post('/contacts', contact);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );

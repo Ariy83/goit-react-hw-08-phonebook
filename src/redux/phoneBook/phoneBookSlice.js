@@ -12,6 +12,7 @@ const initialState = {
     error: null,
   },
   filter: '',
+  token: '',
 };
 
 const phoneBookSlice = createSlice({
@@ -23,6 +24,7 @@ const phoneBookSlice = createSlice({
         state.contacts.isLoading = true;
       })
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
         state.contacts.items = payload;
         state.contacts.isLoading = false;
       })
@@ -36,6 +38,7 @@ const phoneBookSlice = createSlice({
         );
       })
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
         state.contacts.items.push(payload);
       });
   },

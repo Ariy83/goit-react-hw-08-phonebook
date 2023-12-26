@@ -4,7 +4,7 @@ import { StyledButton, StyledForm, StyledInput, StyledLabel } from './ContactFor
 export const ContactForm = ({handleAddContact}) => {
   const [state, setState] = useState({
     name: '',
-    phone: ''
+    number: ''
   })
 
   const handleChangeInput = ({ target }) => {
@@ -19,7 +19,7 @@ export const ContactForm = ({handleAddContact}) => {
     
     setState({
       name: '',
-      phone: '',
+      number: '',
 		})
   }
   
@@ -34,8 +34,8 @@ export const ContactForm = ({handleAddContact}) => {
 
         <StyledLabel>
         Contacts
-        <StyledInput value={state.phone} onChange={handleChangeInput}
-          type='tel' name='phone' required />
+        <StyledInput value={state.number} onChange={handleChangeInput}
+          type='tel' name='number' required />
         </StyledLabel>
         <StyledButton>Add contact</StyledButton>
       </StyledForm>
