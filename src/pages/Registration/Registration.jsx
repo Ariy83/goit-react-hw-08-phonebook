@@ -2,6 +2,8 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { registrationThunk } from '../../redux/auth/operations'
+import { StyledButton, StyledForm, StyledInput, StyledLabel, StyledTitle } from '../../components/ContactForm/ContactForm.styled'
+import { StyledFlexWrap } from '../PhoneBook/PhoneBook.styled'
 
 const Registration = () => {
   const { register, handleSubmit, reset } = useForm()
@@ -13,35 +15,36 @@ const Registration = () => {
   }
 
   return (
-    <div>
-			<form onSubmit={handleSubmit(submit)}>
-				<label>
+	  <StyledFlexWrap>
+		  <StyledTitle>Registration</StyledTitle>
+			<StyledForm onSubmit={handleSubmit(submit)}>
+				<StyledLabel>
 					<span>Name</span>
-					<input
+					<StyledInput
 						{...register('name')}
 						placeholder='Enter your name'
 						type='text'
 					/>
-				</label>
-				<label>
+				</StyledLabel>
+				<StyledLabel>
 					<span>Email</span>
-					<input
+					<StyledInput
 						{...register('email')}
 						placeholder='Enter your email'
 						type='email'
 					/>
-				</label>
-				<label>
+				</StyledLabel>
+				<StyledLabel>
 					<span>Password</span>
-					<input
+					<StyledInput
 						{...register('password')}
 						placeholder='Enter your password'
 						type='password'
 					/>
-				</label>
-				<button>Register</button>
-			</form>
-		</div>
+				</StyledLabel>
+				<StyledButton>Register</StyledButton>
+			</StyledForm>
+		</StyledFlexWrap>
   )
 }
 

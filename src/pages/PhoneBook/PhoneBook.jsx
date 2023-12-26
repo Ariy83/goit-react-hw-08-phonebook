@@ -7,6 +7,8 @@ import { ContactList } from "../../components/ContactList/ContactList";
 import { Filter } from "../../components/Filter/Filter";
 import { StyledTitle } from "../../components/ContactForm/ContactForm.styled";
 import { toast } from "react-toastify";
+import { Loader } from "../../components/Loader/Loader";
+import { StyledFlexWrap } from "./PhoneBook.styled";
 
 export const PhoneBook = () => {
     const contacts = useSelector(selectContacts)
@@ -31,16 +33,7 @@ export const PhoneBook = () => {
     
   return (
     (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        fontSize: 20,
-        color: '#010101'
-      }}
-    >
+    <StyledFlexWrap>
 
       <StyledTitle>Phonebook</StyledTitle>
       <ContactForm handleAddContact={handleAddContact}
@@ -50,10 +43,10 @@ export const PhoneBook = () => {
       <Filter />
       <ContactList contacts={getFilteredData()} />
 
-      {loading && <h1>Loading....</h1>}
+      {loading && <Loader />}
 			{error && <h1>{error}</h1>}
       
-        </div>
+        </StyledFlexWrap>
   )
   )
 }

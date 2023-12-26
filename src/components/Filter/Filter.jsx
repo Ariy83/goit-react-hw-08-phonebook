@@ -1,4 +1,4 @@
-import { StyledInput, StyledLabel } from '../../components/ContactForm/ContactForm.styled'
+import { StyledForm, StyledInput, StyledLabel } from '../../components/ContactForm/ContactForm.styled'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -11,11 +11,13 @@ export const Filter = () => {
   const dispatch = useDispatch()
 
   return (
+    <StyledForm>
     <StyledLabel>
           Find contacts by name:
           <StyledInput
               value={filter} onChange={(e)=> dispatch(changeFilter(e.target.value))}
               name="filter" />
-        </StyledLabel>
+      </StyledLabel>
+    </StyledForm>
   )
 }

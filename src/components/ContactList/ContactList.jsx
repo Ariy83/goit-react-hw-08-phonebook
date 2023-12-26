@@ -1,19 +1,19 @@
 import React from 'react'
 import { ContactItem } from '../ContactItem/ContactItem'
-import { StyledButton } from '../ContactForm/ContactForm.styled'
+import { StyledList } from './ContactList.styled'
+
 
 export const ContactList = ({contacts=[]}) => {
   return (
-      <ul>
+      <StyledList>
           {contacts.map(contact => (
             <ContactItem key={contact.id}
               {...contact}
               name={contact.name}
               number={contact.number}
             >
-              <StyledButton >Add contact</StyledButton>
             </ContactItem>
 			))}
-      </ul>
+      </StyledList>
   )
 }

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { loginThunk } from '../../redux/auth/operations'
+import { StyledButton, StyledForm, StyledInput, StyledLabel, StyledTitle } from '../../components/ContactForm/ContactForm.styled'
+import { StyledFlexWrap } from '../PhoneBook/PhoneBook.styled'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -30,27 +32,28 @@ const Login = () => {
   }
 
   return (
-    <div>
-			<form onSubmit={handleSubmit(submit)}>
-				<label>
+	  <StyledFlexWrap>
+		  <StyledTitle>Login</StyledTitle>
+			<StyledForm onSubmit={handleSubmit(submit)}>
+				<StyledLabel>
 					<span>Email</span>
-					<input
+					<StyledInput
 						{...register('email')}
 						placeholder='Enter your email'
 						type='email'
 					/>
-				</label>
-				<label>
+				</StyledLabel>
+				<StyledLabel>
 					<span>Password</span>
-					<input
+					<StyledInput
 						{...register('password')}
 						placeholder='Enter your password'
 						type='password'
 					/>
-				</label>
-				<button>Login</button>
-			</form>
-		</div>
+				</StyledLabel>
+				<StyledButton>Login</StyledButton>
+			</StyledForm>
+		</StyledFlexWrap>
   )
 }
 

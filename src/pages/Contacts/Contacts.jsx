@@ -11,7 +11,7 @@ const Contacts = () => {
     const error = useSelector(selectError)
     
     const getFilteredData = () => {
-    return contacts?.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()) 
+    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()) 
     )
     }
     
