@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, clearToken, setToken } from '../../configAxios/api';
+import { toast } from 'react-toastify';
 
 export const registrationThunk = createAsyncThunk(
   'auth/register',
@@ -9,6 +10,7 @@ export const registrationThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -22,6 +24,7 @@ export const loginThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -34,6 +37,7 @@ export const logoutThunk = createAsyncThunk(
       await api.post('/users/logout');
       clearToken();
     } catch (error) {
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -53,6 +57,7 @@ export const refreshThunk = createAsyncThunk(
       const { data } = await api.get('/users/current');
       return data;
     } catch (error) {
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }

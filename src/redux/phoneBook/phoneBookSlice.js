@@ -4,6 +4,7 @@ import {
   deleteContactThunk,
   fetchContactsThunk,
 } from './operations';
+import { refreshThunk } from '../auth/operations';
 
 const initialState = {
   contacts: {
@@ -22,6 +23,9 @@ const phoneBookSlice = createSlice({
       .addCase(fetchContactsThunk.pending, state => {
         state.contacts.isLoading = true;
       })
+      .addCase(addContactThunk.pending, state => {
+        state.contacts.isLoading = true;
+      })
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.contacts.items = payload;
         state.contacts.isLoading = false;
@@ -30,13 +34,21 @@ const phoneBookSlice = createSlice({
         state.contacts.isLoading = false;
         state.contacts.error = payload;
       })
+      .addCase(deleteContactThunk.pending, state => {
+        state.contacts.isLoading = true;
+      })
       .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
+        state.contacts.isLoading = false;
         state.contacts.items = state.contacts.items.filter(
           contact => contact.id !== payload
         );
       })
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.items.push(payload);
+        state.contacts.isLoading = false;
+      })
+      .addCase(refreshThunk.fulfilled, state => {
+        state.contacts.items = [];
       });
   },
 

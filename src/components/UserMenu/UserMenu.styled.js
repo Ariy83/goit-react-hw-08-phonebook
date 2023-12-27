@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledWrap = styled.div`
+  max-height: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;

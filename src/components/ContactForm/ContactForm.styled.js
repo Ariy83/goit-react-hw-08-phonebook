@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-export const StyledTitle = styled.h1`
+export const StyledTitle = styled.p`
+  font-size: calc((1vh + 1vw));
+  font-weight: bold;
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 20px;
 `;
 export const StyledForm = styled.form`
   font-size: calc((1vh + 1vw));
@@ -10,6 +12,7 @@ export const StyledForm = styled.form`
   width: calc((10vh + 20vw) * 1.2);
   padding: 30px 25px;
   border-radius: 12px;
+  margin-top: 30px;
 `;
 export const StyledLabel = styled.label`
   display: flex;
