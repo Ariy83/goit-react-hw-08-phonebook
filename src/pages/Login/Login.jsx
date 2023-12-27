@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginThunk } from '../../redux/auth/operations';
 import {
@@ -13,21 +12,14 @@ import {
 import { StyledFlexWrap } from '../PhoneBook/PhoneBook.styled';
 
 const Login = () => {
-  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
-  // {
-  // 	defaultValues: {
-  // 		email: 'Andrii@mail.com.ua',
-  // 		password: 'Andrii@mail.com.ua',
-  // 	}
-  // }
+
   const dispatch = useDispatch();
 
   const submit = data => {
     dispatch(loginThunk(data))
       .unwrap()
       .then(res => {
-        navigate('/contacts');
         toast.success(`Welcome ${res.user.name}!`);
       });
     reset();

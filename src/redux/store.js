@@ -19,20 +19,11 @@ const persistConfig = {
   storage,
   whitelist: ['token'],
 };
-const persistPhoneConfig = {
-  key: 'contacts',
-  version: 1,
-  storage,
-};
 
 const persistedReducer = persistReducer(persistConfig, authReducer);
-const persistedPhoneReducer = persistReducer(
-  persistPhoneConfig,
-  phoneBookReducer
-);
 
 const rootReducer = combineReducers({
-  contacts: persistedPhoneReducer,
+  contacts: phoneBookReducer,
   auth: persistedReducer,
 });
 

@@ -29,3 +29,7 @@ export const StyledWrap = styled.div`
   align-items: center;
   gap: 20px;
 `;
+
+export const StyledName = styled.p`
+  font-size: calc((1vh + 1vw));
+`;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
@@ -6,7 +6,10 @@ import {
   selectFilter,
   selectIsLoading,
 } from '../../redux/phoneBook/selectors';
-import { addContactThunk } from '../../redux/phoneBook/operations';
+import {
+  addContactThunk,
+  fetchContactsThunk,
+} from '../../redux/phoneBook/operations';
 import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { ContactList } from '../../components/ContactList/ContactList';
 import { Filter } from '../../components/Filter/Filter';
@@ -20,6 +23,10 @@ export const PhoneBook = () => {
   const loading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContactsThunk());
+  }, [dispatch]);
 
   const handleAddContact = ({ name, number }) => {
     if (contacts.find(contact => contact.name === name)) {

@@ -9,7 +9,6 @@ import {
   StyledLabel,
 } from '../../components/ContactForm/ContactForm.styled';
 import { StyledFlexWrap } from '../PhoneBook/PhoneBook.styled';
-import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Registration = () => {
@@ -20,7 +19,6 @@ const Registration = () => {
     dispatch(registrationThunk(data))
       .unwrap()
       .then(res => {
-        Navigate('/contacts');
         toast.success(`Welcome ${res.user.name}!`);
       });
     reset();
