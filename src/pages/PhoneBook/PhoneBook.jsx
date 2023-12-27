@@ -41,8 +41,8 @@ export const PhoneBook = () => {
       <ContactForm handleAddContact={handleAddContact} />
 
       <Filter />
-      {loading && <Loader />}
       <ContactList contacts={getFilteredData()} />
+      {loading && <Loader />}
 
       {error && <h1>{error}</h1>}
     </StyledFlexWrap>

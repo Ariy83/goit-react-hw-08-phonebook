@@ -4,7 +4,6 @@ import {
   deleteContactThunk,
   fetchContactsThunk,
 } from './operations';
-import { refreshThunk } from '../auth/operations';
 
 const initialState = {
   contacts: {
@@ -46,9 +45,6 @@ const phoneBookSlice = createSlice({
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.items.push(payload);
         state.contacts.isLoading = false;
-      })
-      .addCase(refreshThunk.fulfilled, state => {
-        state.contacts.items = [];
       });
   },
 
